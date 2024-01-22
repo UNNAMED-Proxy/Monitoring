@@ -15,7 +15,7 @@ def home(request):
     return render(request, 'home.html', {'topics': topics})
 
 
-# 위 내용과 같다.sdfsdfsdfrgvergergregegr
+# 위 내용과 같다.
 
 
 # 추가하기
