@@ -1,0 +1,36 @@
+{% extends  'base.html' %}
+     {% block content %}
+        <table class="table">
+            <thead class="bg-info">
+                <tr>
+                    <th>작성자</th>
+                    <th>제목</th>
+                    <th>조회수</th>
+                    <th>댓글수</th>
+                    <th>작성일자</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {% for topic in topics %}
+                <tr>
+                    <td>{{topic.writter.username }}</td>
+                    <td>{{topic.subject }}</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>{{topic.last_updated}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <!-- add creating posting button  게시글 버튼-->
+        <div class="mb-4">
+            <a href="{% url 'new_topic' %}" class="btn btn-info"><b>글 작성</b></a>
+        </div>
+
+
+  {% endblock %}

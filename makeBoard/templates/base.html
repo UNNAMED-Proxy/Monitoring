@@ -1,0 +1,31 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class ="navbar-brand" href="{% url 'home' %}">장고 게시판</a>
+
+    </div>
+    </nav>
+
+    <!-- 여기에 컨텐츠들을 계속 넣습니다.유지보수를 위해서 -->
+    <div class="container">
+        {% block content %}<!-- 이제 이부분에 content라는 이름으로 이어받아서 작성할수 있습니다. -->
+        {% endblock %}
+    </div>
+ </body>
+
+
+</html>

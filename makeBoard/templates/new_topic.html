@@ -1,0 +1,24 @@
+{% extends  'base.html' %}
+
+{% block title %} writting {% endblock %}
+
+
+{% block content %}
+    <form method ="post">
+        {% csrf_token %}
+
+        <!-- writting title -->
+        <div class="form-group">
+            <label for="id_subject"> 제목 </label>
+            <input type="text" class="form-control" id="id_subject" name="subject">
+        </div>
+
+        <div class="form-group">
+            <lable for="id_message">내용</lable>
+            <textarea class="form-control" id="id_message" name="message" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">게시</button>
+
+
+</form>
+{% endblock %}
