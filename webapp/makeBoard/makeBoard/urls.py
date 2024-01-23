@@ -24,5 +24,5 @@ urlpatterns = [
     path('<int:topic_id>/', views.detail, name='detail'),
     path('admin/', admin.site.urls),
     path('common/', include('common.urls')),
-
+    # path('answer/create/<int:topic_id>/', views.answer_create, name='answer_create'),
 ]
