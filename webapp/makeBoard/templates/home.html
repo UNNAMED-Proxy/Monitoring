@@ -3,6 +3,7 @@
         <table class="table">
             <thead class="bg-info">
                 <tr {border-bottom: 2px solid black}>
+                    <th>No</th>
                     <th>작성자</th>
                     <th>제목</th>
                     <th>조회수</th>
@@ -14,11 +15,12 @@
             <tbody>
                 {% for topic in topics %}
                 <tr>
-                    <td>{{topic.writter.username }}</td>
-                    <td>{{topic.subject }}</td>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ topic.writter.username }}</td>
+                    <td><a href="{% url 'detail' topic_id=topic.id %}">{{ topic.subject }}</a></td>
                     <td>0</td>
                     <td>0</td>
-                    <td>{{topic.last_updated}}</td>
+                    <td>{{ topic.last_updated }}</td>
                 </tr>
                 {% endfor %}
 
@@ -33,4 +35,4 @@
                 <a href="{% url 'new_topic' %}" class="btn btn-info"><b>문의하기</b></a>
             {%endif%}
         </div>
-  {% endblock %}
+    {% endblock %}

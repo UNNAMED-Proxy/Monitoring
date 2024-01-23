@@ -3,13 +3,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Topic(models.Model):
-    message = models.TextField(max_length=5000,null=True)
-    subject = models.CharField(max_length=255)
-    last_updated =  models.DateField(auto_now_add=True, null=True)
-    writter = models.ForeignKey(User, related_name='topics',on_delete=models.CASCADE, null=False)
-
-    def __str__(self):
-        return self.subject
+    message = models.TextField(max_length=5000,null=False,blank=False)
+    subject = models.CharField(max_length=255,blank=False)
+    last_updated =  models.DateTimeField(auto_now_add=True, null=False,blank=False)
+    writter = models.ForeignKey(User, related_name='topics',on_delete=models.CASCADE, null=False,blank=False)
 
 class Reply(models.Model):
     message = models.TextField(max_length=5000)

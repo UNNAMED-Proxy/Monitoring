@@ -21,6 +21,8 @@ from boards1 import views
 urlpatterns = [
     path('', views.home,name='home'),
     path('new/',views.new_topic,name='new_topic'),
+    path('<int:topic_id>/', views.detail, name='detail'),
     path('admin/', admin.site.urls),
     path('common/', include('common.urls')),
+
 ]

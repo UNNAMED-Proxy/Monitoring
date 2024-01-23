@@ -8,13 +8,13 @@
         <div class="form-group">
             <label for="id_subject"> 제목 </label>
             <input type="text" class="form-control" id="id_subject" name="subject"
-                   value="{{ form.subject.value|default_if_none:'' }}">
+                   value="{{ form.subject.value|default_if_none:'' }}">{{ topic.subject }}
         </div>
 
         <div class="form-group">
             <lable for="id_message">내용</lable>
             <textarea class="form-control" id="id_message" name="message" rows="5"
-                      value="{{ form.message.value|default_if_none:'' }}"></textarea>
+                      value="{{ form.message.value|default_if_none:'' }}">{{ topic.message }}</textarea>
         </div>
         {% if user.is_authenticated %}
                 <button type="submit" class="btn btn-success">게시</button>
