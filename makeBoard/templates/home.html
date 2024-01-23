@@ -14,11 +14,12 @@
             <tbody>
                 {% for topic in topics %}
                 <tr>
-                    <td>{{topic.writter.username }}</td>
-                    <td>{{topic.subject }}</td>
+                    <td>{{ topic.writter.username }}</td>
+                    <td>{{ topic.subject }}</a></td>
                     <td>0</td>
                     <td>0</td>
-                    <td>{{topic.last_updated}}</td>
+                    <td>{{ topic.last_updated}}</td>
+
                 </tr>
                 {% endfor %}
 
