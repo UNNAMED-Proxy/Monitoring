@@ -14,3 +14,4 @@ class Reply(models.Model):
     created_by= models.ForeignKey(User, null=True, related_name='posts',on_delete=models.CASCADE)
     updated_at = models.DateField(null = True)
     updated_by=  models.ForeignKey(User,null=True,related_name='+',on_delete=models.CASCADE)
+
