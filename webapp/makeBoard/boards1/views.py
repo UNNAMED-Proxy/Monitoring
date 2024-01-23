@@ -1,8 +1,8 @@
 # 사용자정의
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 # 렌더링
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Topic, Reply
 # 모델의 클래스명
@@ -15,9 +15,6 @@ def home(request):
     return render(request, 'home.html', {'topics': topics})
 
 
-# 위 내용과 같다.
-
-
 # 추가하기
 def new_topic(request):
     topics = Topic.objects.all()
@@ -25,7 +22,7 @@ def new_topic(request):
         subject = request.POST['subject']
         message = request.POST['message']
 
-        user = User.objects.first()
+        user = request.user
 
         topic = Topic.objects.create(
             subject=subject,
@@ -36,9 +33,9 @@ def new_topic(request):
         post = Reply.objects.create(
             message=message,
             created_by=user
-
         )
 
         return redirect('home')
 
     return render(request, 'new_topic.html', {'topics': topics})
+

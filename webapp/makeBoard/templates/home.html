@@ -2,14 +2,13 @@
      {% block content %}
         <table class="table">
             <thead class="bg-info">
-                <tr>
+                <tr {border-bottom: 2px solid black}>
                     <th>작성자</th>
                     <th>제목</th>
                     <th>조회수</th>
                     <th>댓글수</th>
                     <th>작성일자</th>
                 </tr>
-
             </thead>
 
             <tbody>
@@ -24,13 +23,14 @@
                 {% endfor %}
 
             </tbody>
-
         </table>
+        <br>
 
         <!-- add creating posting button  게시글 버튼-->
+        <!--로그인 했을 경우에만 문의하기 버튼 활성화-->
         <div class="mb-4">
-            <a href="{% url 'new_topic' %}" class="btn btn-info"><b>글 작성</b></a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'new_topic' %}" class="btn btn-info"><b>문의하기</b></a>
+            {%endif%}
         </div>
-
-
   {% endblock %}
