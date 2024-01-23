@@ -7,6 +7,8 @@ class Topic(models.Model):
     subject = models.CharField(max_length=255,blank=False)
     last_updated =  models.DateTimeField(auto_now_add=True, null=False,blank=False)
     writter = models.ForeignKey(User, related_name='topics',on_delete=models.CASCADE, null=False,blank=False)
+    # 20240123 조회수 View_count 에 대해서 boards1_topic 테이블에 view_count 컬럼 추가
+    view_count = models.PositiveIntegerField(default=0)
 
 class Reply(models.Model):
     message = models.TextField(max_length=5000)
@@ -17,6 +19,7 @@ class Reply(models.Model):
 
 class Answer(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    content = models.TextField(max_length=5000,null=True)
-    create_date = models.DateField()
-    writter = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField(max_length=5000,null=False)
+    create_date = models.DateTimeField(auto_now_add=True)
+    # create_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    # update_date = models.DateTimeField(auto_now=True)
