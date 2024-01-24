@@ -1,7 +1,6 @@
 {% extends  'base.html' %}
 
 {% block content %}
-    <form method ="post">
         {% csrf_token %}
         {% include "form_errors.html" %}
         <!-- writting title -->
@@ -18,11 +17,9 @@
         <div class="form-group">
             <lable for="id_message"><b> 최종수정일 </b> : </lable>
             <a>{{ topic.last_updated }}</a>
-        </div>        
-        
+        </div>
 
-
-        <h5>{{ topic.answer_set.count }} 개의 답변이 있습니다.</h5>
+        <h5>{{ topic.answer_set.count }}개의 답변이 있습니다.</h5>
         <div>
             <ul>
             {% for answer in topic.answer_set.all %}
@@ -31,18 +28,14 @@
             </ul>
         </div>
 
-
-        <!-- 문제 부분 -->
-        <!-- <form action="{% url 'answer_create' topic_id %}" method="post"> -->
-        <!-- <form method="post">
+        <form action="{% url 'answer_create' topic_id=topic.id %}" method="post">
         {% csrf_token %}
         <textarea name="content" id="content" rows="15"></textarea>
-        <input type="submit" value="답변등록">
-        </form> -->
+        {% if user.is_authenticated %}
+                <button type="submit" class="btn btn-success">댓글</button>
+        {%endif%}
+        </form>
 
 
-    {% if user.is_authenticated %}
-            <button type="submit" class="btn btn-success">댓글</button>
-    {%endif%}
-    </form>
+
 {% endblock %}

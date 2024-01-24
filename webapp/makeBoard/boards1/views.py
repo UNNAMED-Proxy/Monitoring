@@ -64,15 +64,17 @@ def counting(topic_id):
 
 
 def answer_create(request, topic_id):
-    topic_id = get_object_or_404(Topic, pk=topic_id)
-    answers = Answer.objects.filter(topic = topic_id)
-    print(11111111111)
+    print(123123)
     if request.method == "POST":
-        print(11123)
-        answer = Answer()
-        answer.topic = topic_id
-        answer.content = request.POST['content']
-        answer.create_date = timezone.now()
-        answer.save()
+        topic = Topic.objects.get(id = topic_id)
+        answer = Answer.objects.create(
+            topic=topic,
+            content=request.POST['content'],
+            create_date=timezone.now(),
+        )
+        
+        topic.view_count -= 1
+        topic.save()
 
-    return redirect('detail', {'answer':answers})
+
+    return redirect('detail', topic_id=topic.id)
