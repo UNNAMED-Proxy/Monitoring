@@ -20,14 +20,51 @@
                     <td>{{ topic.writter.username }}</td>
                     <td><a href="{% url 'detail' topic_id=topic.id %}">{{ topic.subject }}</a></td>
                     <td>{{ topic.view_count }}</td>
-                    <td>0</td>
+                    <td>{{ topic.answer_set.count }}</td>
                     <td>{{ topic.last_updated }}</td>
                 </tr>
                 {% endfor %}
-
             </tbody>
         </table>
         <br>
+
+        <!-- 페이징처리 시작 -->
+        <ul class="pagination justify-content-center">
+            <!-- 이전페이지 -->
+            {% if question_list.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ topic_list.previous_page_number }}">이전</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in question_list.paginator.page_range %}
+            {% if page_number == question_list.number %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if question_list.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ topic_list.next_page_number }}">다음</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- 페이징처리 끝 -->        
+
 
         <!-- add creating posting button  게시글 버튼-->
         <!--로그인 했을 경우에만 문의하기 버튼 활성화-->
@@ -36,5 +73,8 @@
                 <a href="{% url 'new_topic' %}" class="btn btn-info"><b>문의하기</b></a>
             {%endif%}
         </div>
+
+
+
     </body>
     {% endblock %}
