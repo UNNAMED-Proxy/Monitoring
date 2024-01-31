@@ -4,7 +4,8 @@
 
 ---
 ### 1. Main
-![main](https://user-images.githubusercontent.com/52586888/64872103-8a3eaf80-d681-11e9-9a21-c35d28c26aac.PNG)
+![image](https://github.com/UNNAMED-Proxy/voc/assets/56819763/a3457e9b-5146-45ba-8e07-27160c72ea30)
+
 
 ---
 ### 1. signIn, signUp
