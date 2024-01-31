@@ -20,19 +20,6 @@
             return true;
         }
 
-        // 폼 제출 시 비밀번호가 4자리 숫자가 아니면 알림을 띄우는 함수
-        function validateForm() {
-            var passwordInput = document.getElementById('post_password');
-            var passwordValue = passwordInput.value;
-
-            if (passwordValue.length !== 4 || isNaN(passwordValue)) {
-                alert('비밀번호는 4자리 숫자만 입력 가능합니다.');
-                return false;
-            }
-
-            return true;
-        }
-
         var allData = {
             "majors": {{ majors | tojson | safe }},
             "minors": {{ minors | tojson | safe }}
