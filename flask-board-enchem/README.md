@@ -23,6 +23,8 @@ primary key를 id(번호)로 두고 딕셔너리 형태로 fetchall 후 출력
 
 ---
 ### 3. Write, Edit
+접수 대분류 및 접수 대분류의 상세 값 출력 (Dynamic)
+
 <left><img src="https://user-images.githubusercontent.com/52586888/64872139-9b87bc00-d681-11e9-8b70-29a6d26837a9.PNG" width="400" height="350"></left>
 <right><img src="https://user-images.githubusercontent.com/52586888/64872143-9d517f80-d681-11e9-898d-e14490d3d76d.PNG" width="400" height="350"></right>
 
