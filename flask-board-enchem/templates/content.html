@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maxinum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>post content page</title>
+
+    <style>
+        .comment-container {
+            position: relative;
+        }
+
+        .delete-comment {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
+
+    <script>
+        // 엔터 키를 누를 때 댓글 폼 자동 제출
+        function submitCommentForm(event, formId) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById(formId).submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <br>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                {% for data_ in content %}
+                <div class="card-header"><h3><strong>{{data_['title']}}</strong></h3></div>
+                <div class="card-body">
+                    {{data_['content']}}
+                    <!-- 첨부 파일 목록 표시 -->
+                    <div>
+                        {% if files %}
+                            <h5>첨부 파일</h5>
+                            <ul>
+                                {% for file in files %}
+                                    <li>
+                                    <a href="{{ url_for('download_file', id=data_['id']) }}" target="_blank">aaa {{ file['file_name'] }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/post/edit/{{data_['id']}}" class="card-link">수정하기</a>
+                    <a href="/post/delete/{{data_['id']}}" class="card-link">삭제하기</a>
+                    <a href="/post" class="card-link">목록으로</a>
+
+                    <!-- 댓글 표시 -->
+                    <div class="card-footer">
+                        <h5>댓글</h5>
+                        {% if comments %}
+                            {% for comment in comments %}
+                            <div class="comment-container">
+                                <p>
+                                    {{ comment['comment'] }}
+                                    <div class="delete-comment">
+                                        {{ comment['wdate'] }}  {{ comment['user_name'] }}
+                                        <!-- 수정된 부분 -->
+                                        {% if 'username' in session %}
+                                            {% if session['username'] == comment['user_name'] %}
+                                                <a href="/post/comment/delete/{{data_['id']}}/{{ comment.comment_id }}" class="btn btn-danger" style="color: white;font-size: 0.8em;" data-toggle="tooltip" data-placement="right" title="댓글 삭제">
+                                                    <i class="fas fa-times"></i> <!-- Font Awesome의 X 아이콘 -->
+                                                </a>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </p>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>댓글이 없습니다.</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- 댓글 작성 폼 -->
+                    <div class="card-footer">
+                        <form action="/post/comment/{{ data_['id'] }}" method="post">
+
+                            <!-- 기존 코드 -->
+                            <div class="form-group">
+                                <label for="comment">댓글 작성:</label>
+                                <textarea class="form-control" id="comment" name="comment" rows="3" onkeydown="submitCommentForm(event, 'commentForm')" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">댓글 작성</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

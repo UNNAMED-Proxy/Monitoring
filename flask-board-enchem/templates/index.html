@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /* style.css */
+        .btn-custom {
+            transition: color 0.3s;
+        }
+
+        .btn-custom:hover {
+            color: red !important;
+            text-decoration: none !important;
+        }
+    </style>
+
+    <title>전체 포스트 게시판</title>
+</head>
+<body>
+    <div class="view" style="background-image: url(static/images/bg.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 1;">
+        <div class="row h-100">
+            <div class="col-sm-12 my-auto white-text text-center">
+                <div class="container">
+                    {% if logininfo %}
+                    <h5 style="text-shadow: 2px 2px black; color: white; font-size: 1.5rem;">Welcome <strong>{{logininfo}}.</strong></h5>
+                    {% endif %}
+                    <img src="static/images/main_logo-color.png" alt="Main Logo" style="width: 200px; height: auto;"> <!-- 이미지 추가 부분 -->
+                    <hr style="border: solid 2px rgb(255, 255, 255); width:750px; margin-bottom: -12px">
+                    <a class="display-2 text-white font-weight-bold"
+                       style="text-shadow:0 5px black,5px 0 black;">HELP DESK & VOC</a>
+                    <hr style="border: solid 2px rgb(255, 255, 255); width:750px; margin-top:0px">
+                    <hr>
+                    <a class="display-2 text-white font-weight-bold"
+                       style="text-shadow:0 3px black,5px 0 black; font-size: 3em;">IT파트</a>
+                    <hr>
+                    {% if logininfo %}
+                    <a href="/post" class="btn btn-custom" style="text-shadow:2px 2px black; color: white; font-size: 2.5rem;"><strong>GET START&nbsp;</strong></a> <font color="white" size=6>&middot;&nbsp;</font>
+                    <a href="/logout" class="btn btn-custom" style="text-shadow: 2px 2px black; color: white; font-size: 2.5rem;"><strong>LOGOUT</strong></a>
+                    {% else %}
+                    <a href="/login" class="btn btn-custom" style="text-shadow: 2px 2px black; color: white; font-size: 2.5rem;"><strong>SIGN IN&nbsp;</strong></a> <font color="white" size=6>&middot;&nbsp;</font>
+                    <a href="/regist" class="btn btn-custom" style="text-shadow: 2px 2px black; color: white; font-size: 2.5rem;"><strong>SIGN UP</strong></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

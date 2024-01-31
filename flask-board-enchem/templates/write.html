@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>write page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script>
+        // 숫자만 입력되도록 하는 함수
+        function allowOnlyNumbers(event) {
+            var charCode = (event.which) ? event.which : event.keyCode;
+            // 숫자(0-9) 허용, 백스페이스(8) 허용
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 8) {
+                event.preventDefault();
+                // 숫자가 아닌 경우 알람 띄우기
+                alert("숫자만 입력하세요.");
+                return false;
+            }
+            return true;
+        }
+
+        // 폼 제출 시 비밀번호가 4자리 숫자가 아니면 알림을 띄우는 함수
+        function validateForm() {
+            var passwordInput = document.getElementById('post_password');
+            var passwordValue = passwordInput.value;
+
+            if (passwordValue.length !== 4 || isNaN(passwordValue)) {
+                alert('비밀번호는 4자리 숫자만 입력 가능합니다.');
+                return false;
+            }
+
+            return true;
+        }
+
+        var allData = {
+            "majors": {{ majors | tojson | safe }},
+            "minors": {{ minors | tojson | safe }}
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var initialMajorSeq = document.getElementById('majorSelect').value;
+            populateMinorSelect(initialMajorSeq);
+        });
+
+        // Major와 Minor를 동적으로 매칭하여 Minor 셀렉트 박스를 업데이트하는 함수
+        function populateMinorSelect(majorSeq) {
+            var minorSelect = document.getElementById('minorSelect');
+            minorSelect.innerHTML = '';
+
+            allData.minors.forEach(function (minor) {
+                if (majorSeq == minor.MajorSeq) {
+                    var option = document.createElement('option');
+                    option.value = minor.MinorSeq;
+                    option.text = minor.MinorName;
+                    minorSelect.add(option);
+                }
+            });
+        }
+    </script>
+</head>
+
+<!-- 나머지 부분은 동일 -->
+
+
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li>접속자: <strong>{{logininfo}}</strong> 님</li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">게시판 글작성</h3>
+        </div>
+        <section>
+            <form class="form-horizontal" method="post" action="/write" enctype="multipart/form-data">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Write Your Post</legend>
+                    <!-- Major select -->
+                    <div class="form-group">
+                        <label class="col-md-12" for="majorSelect">요청 항목</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="majorSelect" name="major" onchange="populateMinorSelect(this.value, this.options[this.selectedIndex].text)">
+                                {% for major in majors %}
+                                    <option value="{{ major['MajorSeq'] }}">{{ major['MajorName'] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Minor select -->
+                    <!-- 이 부분에 동적으로 생성된 select 요소를 나타낼 영역 -->
+                    <div class="form-group">
+                        <label class="col-md-12" for="minorSelect">요청 상세</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="minorSelect" name="minor">
+                                {% for minor in minors %}
+                                    <option value="{{ minor['MinorSeq'] }}">{{ minor['MinorName'] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-12" for="txtTitle">제  목</label>
+                        <div class="col-md-12">
+                            <input id="txtTitle" name="title" type="text" placeholder="(필수) 제목을 입력하세요." class="form-control input-md" autofocus required>
+                        </div>
+                    </div>
+                    <!-- Textarea -->
+                    <div class="form-group">
+                        <label class="col-md-12" for="txtPost">내  용</label>
+                        <div class="col-md-12">
+                            <textarea class="form-control" id="txtPost" name="content" placeholder="(필수) 내용을 입력하세요." style="height:260px;" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-group">
+                        <label class="col-md-12" for="post_password">비밀번호</label>
+                        <div class="col-md-12">
+                            <input type="text" id="post_password" name="post_password" placeholder="(선택) 게시물 비밀번호 4자리를 입력하세요." class="form-control" maxlength="4" onkeypress="allowOnlyNumbers(event)">
+                        </div>
+                    </div>
+
+                    <!-- File input -->
+                    <div class="form-group">
+                        <label class="col-md-12" for="file">첨부 파일</label>
+                        <div class="col-md-12">
+                            <input type="file" name="file" id="file">
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-12 control-label" for="singlebutton"></label>
+                        <div class="col-md-12">
+                            <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="작성하기" onclick="return validateForm();">
+                        </div>
+                    </div>
+                     <div class="card-footer"><a href="/post" class="card-link">목록으로</a></div>
+                </fieldset>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
