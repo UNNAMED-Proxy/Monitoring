@@ -1,5 +1,6 @@
 # 1. Ping_Monitoring
 # 2. SNMP Monitoring
+# 3. 플라스크
 
 ## [1. Ping_Monitoting]
 ### [모니터링 화면]
@@ -12,3 +13,7 @@
 ## [2. SNMP Monitoring]
 ### [데이터 수집]
 #### ![image](https://github.com/UNNAMED-Proxy/voc/assets/56819763/89a58905-00e9-4ef4-a80c-c6ce41a9a952)
+
+## [3. 플라스크]
+### [VOC 접수페이지]
+#### ![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/6b992c8f-27cf-4664-b3c2-998c622832c6)
