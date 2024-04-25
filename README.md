@@ -1,16 +1,5 @@
-# voc
-엔켐 VOC PROJECT
+# Ping_Monitoring
 
-위 내용에 대해서
+## ![1](https://github.com/UNNAMED-Proxy/voc/assets/56819763/733f012c-c038-4542-8d53-e74b2e187732)
 
-파이썬 + Django or 플라스크 2개의 언어를 이용하여 투트렉 개발 진행
-
-장고 개발에 대해서 숙련도 이슈로 인하여 개발 속도가 늦어 플라스크로 개발 진행
-
-
-Django
-1. webapp
-
-플라스크
-1. flask-board-enchem
-2. create_voc_sql.sql
+### 모니터링 화면
