@@ -21,4 +21,5 @@
 
 ## [4. 스케줄보드]
 ### [입사 및 퇴사 기타정보 월 보딩판]
-#### ![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/ca453ab8-312e-4344-9d75-85178d71ab1d)
+#### ![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/5f8a569f-0add-48e1-84be-0910e0839f19)
+
