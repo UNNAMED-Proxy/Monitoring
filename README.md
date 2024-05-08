@@ -17,3 +17,8 @@
 ## [3. 플라스크]
 ### [VOC 접수페이지]
 #### ![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/6b992c8f-27cf-4664-b3c2-998c622832c6)
+
+
+## [4. 스케줄보드]
+### [입사 및 퇴사 기타정보 월 보딩판]
+#### ![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/ca453ab8-312e-4344-9d75-85178d71ab1d)
