@@ -22,9 +22,9 @@
 #### 1. 전산실 모니터링 화면 개발 - 20240604 ~ 20240607 (Aduino - DHT11 데이터 수집)
 ##### ![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/6b992c8f-27cf-4664-b3c2-998c622832c6)
 ###### [온습도 모니터링]
-####### ![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/cbb17f78-d215-46b0-9ae6-5817639a5b31)
+![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/cbb17f78-d215-46b0-9ae6-5817639a5b31)
 ###### [FLOW API Messasging (Single, Bulk 구현)]
-####### ![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/419ca4c6-a552-46ee-9502-725007de2894)
+![image](https://github.com/UNNAMED-Proxy/Monitoring/assets/56819763/419ca4c6-a552-46ee-9502-725007de2894)
 
 
 ## [4. 스케줄보드]
